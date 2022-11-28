@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CRUD</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./query.js"></script>
+
+</head>
+
+<body>
+    <div class="crud">
+
+        <!-- heading -->
+        <div class="head">
+
+            <p style="font-weight: bold;color:#e8e4a5;">- Crud Project -</p>
+            <h2>ADD NEW PRODUCT</h2>
+        </div>
+
+
+        <!-- inputs -->
+        <div class="inputs">
+            <input type="text" placeholder="Title ..." id="title" />
+
+            <div class="price">
+                <input type="number" placeholder="Price ..." id="price" onkeyup="getTotal()" />
+                <input type="number" placeholder="Texes ..." id="texes" onkeyup="getTotal()" />
+                <input type="number" placeholder="Ads ..." id="ads" onkeyup="getTotal()" />
+                <input type="number" placeholder="Discount ..." id="discount" onkeyup="getTotal()" />
+                <span id="total"> --- </span>
+            </div>
+
+            <input type="number" placeholder="Count ..." id="count" />
+            <input type="text" placeholder="Category ..." id="category" />
+            <button id="submit">Create</button>
+        </div>
+
+
+        <!-- search -->
+        <div class="outputs">
+            <div class="search">
+                <input type="text" placeholder="Search ..." id="search" onkeyup="searchdata(this.value)" />
+                <div class="btnsearch">
+
+                    <button id="searchtitle" onclick="getsearch(this.id)">Search By Title</button>
+                    <button id="searchcategory" onclick="getsearch(this.id)">Search By Category</button>
+
+                </div>
+
+
+                <!-- outputs -->
+
+                <table>
+
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Price</th>
+                        <th>Texes</th>
+                        <th>Ads</th>
+                        <th>Discount</th>
+                        <th>Total</th>
+                        <th>Category</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tbody id="tbody">
+                        
+                        
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        let title = document.getElementById("title");
+        let price = document.getElementById("price");
+        let texes = document.getElementById("texes");
+        let ads = document.getElementById("ads");
+        let discount = document.getElementById("discount");
+        let total = document.getElementById("total");
+        let count = document.getElementById("count");
+        let category = document.getElementById("category");
+        let submit = document.getElementById("submit");
+
+        let mood = "create";
+        let temp;
+
+
+
+        function getTotal() {
+
+            if (price.value != "") {
+
+
+                // + لتحويل الاسترينج لرقم 
+
+                let result = (+price.value + +texes.value + +ads.value) - discount.value;
+
+                total.innerHTML = result;
+                total.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+                total.style.border = "0.5px solid #fff";
+                total.style.color = "#fff";
+
+
+
+
+            } else {
+
+            total.innerHTML = "";
+            total.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+             total.style.border = "0.5px solid #fff";
+             total.style.color = "#fff";
+
+
+            }
+
+        }
+
+
+
+
+        // save data
+
+
+        let dataproduct = [];
+
+
+
+        if (localStorage.product != null) {
+            dataproduct = JSON.parse(localStorage.product)
+        } else {
+
+            let dataproduct = [];
+
+        }
+
+        submit.onclick = function () {
+
+
+
+            let newproduct = {
+
+                title: title.value.toLowerCase(),
+                price: price.value,
+                texes: texes.value,
+                ads: ads.value,
+                discount: discount.value,
+                total: total.innerHTML,
+                count: count.value,
+                category: category.value.toLowerCase()
+            }
+
+            if (title.value !== "" && price.value !== "" && texes.value !== "" && ads.value !== "" && discount
+                .value !== "" && category.value !== "" && newproduct.count < 100) {
+
+                if (mood === "create") {
+
+
+
+                    if (newproduct.count > 1) {
+
+                        for (i = 1; i <= newproduct.count; i++)
+                            dataproduct.push(newproduct);
+
+
+                    } else {
+                        dataproduct.push(newproduct);
+                        clearData();
+
+
+
+                    }
+
+
+                }
+                clearData();
+
+
+
+
+
+            } else {
+
+                dataproduct[temp] = newproduct;
+                mood = "create";
+                submit.innerHTML = 'Create';
+                count.style.display = "block";
+
+
+            }
+
+            // لحفظ البيانات في local storage
+            localStorage.setItem('product', JSON.stringify(dataproduct));
+
+
+            showdata();
+
+
+        }
+
+
+        // clear data
+
+        function clearData() {
+
+
+            title.value = "";
+            price.value = "";
+            texes.value = "";
+            ads.value = "";
+            discount.value = "";
+            count.value = "";
+            category.value = "";
+            total.innerHTML = "";
+
+
+        }
+
+
+        // show data
+
+        function showdata() {
+
+            let table = '';
+
+            for (let i = 1; i < dataproduct.length; i++) {
+
+                table += `<tr> <td>${i}</td>
+                            <td>${dataproduct[i].title}</td>
+                            <td>${dataproduct[i].price}</td>
+                            <td>${dataproduct[i].texes}</td>
+                            <td>${dataproduct[i].ads}</td>
+                            <td>${dataproduct[i].discount}</td>
+                            <td>${dataproduct[i].total}</td>
+                            <td>${dataproduct[i].category}</td>
+                            <td><button id="update" onclick="updatedata(${i})">Update</button></td>
+                                        <td><button id="delete" onclick="deletedata(${i})">Delete</button></td>
+                                        
+
+                            </tr>`
+            }
+
+            document.getElementById("tbody").innerHTML = table;
+
+
+        }
+
+        showdata();
+
+
+
+
+        // delete data
+
+        function deletedata(i) {
+
+            if (confirm("Are You Sure?")) {
+
+                dataproduct.splice(i, 1);
+                localStorage.product = JSON.stringify(dataproduct);
+                showdata();
+
+            }
+
+
+        }
+
+
+
+
+        // update data
+
+        function updatedata(i) {
+
+            title.value = dataproduct[i].title;
+            price.value = dataproduct[i].price;
+            texes.value = dataproduct[i].texes;
+            ads.value = dataproduct[i].ads;
+            discount.value = dataproduct[i].discount;
+            category.value = dataproduct[i].category;
+            getTotal();
+            count.style.display = "none";
+            submit.innerHTML = "Update";
+            mood = "update";
+            temp = i;
+            scroll({
+                top: 0,
+                behavior: "smooth"
+            })
+
+        }
+
+
+        // search
+
+        let searchmood = "title";
+
+        function getsearch(id) {
+
+            let searchbut = document.getElementById("search");
+
+            if (id == "searchtitle") {
+
+                searchmood = "title";
+                searchbut.placeholder = "Search By Title"
+            } else {
+
+                searchmood = "category";
+                searchbut.placeholder = "Search By Category"
+
+            }
+
+            searchbut.focus();
+            searchbut.value = "";
+            showdata()
+
+        }
+
+
+        function searchdata(value) {
+
+            let table = '';
+
+
+            if (searchmood == "title") {
+
+                for (let i = 1; i < dataproduct.length; i++) {
+
+                    if (dataproduct[i].title.toLowerCase().includes(value.toLowerCase())) {
+
+                        table += `<tr> <td>${i}</td>
+                            <td>${dataproduct[i].title}</td>
+                            <td>${dataproduct[i].price}</td>
+                            <td>${dataproduct[i].texes}</td>
+                            <td>${dataproduct[i].ads}</td>
+                            <td>${dataproduct[i].discount}</td>
+                            <td>${dataproduct[i].total}</td>
+                            <td>${dataproduct[i].category}</td>
+                            <td><button id="update" onclick="updatedata(${i})">Update</button></td>
+                                <td><button id="delete" onclick="deletedata(${i})">Delete</button></td>
+                                    
+                            </tr>`
+                    }
+
+                }
+            } else if (searchmood == "category") {
+                for (let i = 1; i < dataproduct.length; i++) {
+
+                    if (dataproduct[i].category.includes(value.toLowerCase())) {
+
+                        table += `<tr> <td>${i}</td>
+                            <td>${dataproduct[i].title}</td>
+                            <td>${dataproduct[i].price}</td>
+                            <td>${dataproduct[i].texes}</td>
+                            <td>${dataproduct[i].ads}</td>
+                            <td>${dataproduct[i].discount}</td>
+                            <td>${dataproduct[i].total}</td>
+                            <td>${dataproduct[i].category}</td>
+                            <td><button id="update" onclick="updatedata(${i})">Update</button></td>
+                            <td><button id="delete" onclick="deletedata(${i})">Delete</button></td>                    
+            </tr>`
+
+                    }
+                }
+            }0
+            document.getElementById("tbody").innerHTML = table;
+
+
+        }
+    </script>
+
+</body>
+
+</html>
