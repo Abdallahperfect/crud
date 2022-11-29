@@ -1,83 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CRUD</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="./query.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
+    <title>CRUD PROJECT BY JAVASCRIPT</title>
 </head>
+<style>
+    *{
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+    }
+    body{
+        background-color: #030b17;
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
+    }
+    .dashboard{
+        width: 25%;height:auto;
+background: #ffffff1a;
+backdrop-filter: blur(20px);
+border: 1px solid #ffffff30;
+box-shadow: 0 0 30px #0000002a;
+margin:15px 10px;
+padding: 10px;
+position: fixed;
+top: 10px;
+z-index: 100;
+    }
+    .head{
+        text-align: center;
+        margin: 20px auto;
+    }
+    input {
+    width: 100%;
+    height: 30px;
+    outline: none;
+    border: none;
+    background: #ffffff1a;
+    backdrop-filter: blur(20px);
+    border: 1px solid #ffffff30;
+    box-shadow: 0 0 30px #0000002a;
+
+    margin: 10px auto;
+    border-radius: 4px;
+    padding: 4px;
+    color: #fff;
+}
+input:focus {
+
+    background: #ffffff1a;
+    backdrop-filter: blur(20px);
+    border: 1px solid #ffffff30;
+    box-shadow: 0 0 30px #0000002a;
+}
+.price input {
+    width: 100%;
+}
+input::placeholder {
+    color: #fff;
+}
+#total {
+    background-color: rgb(143, 59, 59);
+    padding: 5px 5px;
+    border-radius: 4px;
+    color: #fff;
+    margin: 10px 0px;
+    width: 100%;
+
+}
+#total::before {
+    content: "Total : ";
+}
+button {
+    width: 100%;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid #666;
+    color: #fff;
+    border-radius: 20px;
+    transition: all 1s;
+    font-weight: bold;
+    margin-top:5px;
+    margin-bottom:5px;
+
+}
+button:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.card{
+width: 30%;
+height:370px;
+
+background: #ffffff1a;
+backdrop-filter: blur(20px);
+border: 1px solid #ffffff30;
+box-shadow: 1px 1px 2px #555;
+margin:10px 10px 40px 10px;
+position:relative;
+border-radius: 20px;
+text-align:center;
+padding:20px;
+color:#eee
+
+
+
+}
+.delete{
+    position:absolute;
+    width:70px;
+    height:70px;
+    top:100%;
+    border-radius:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    margin:auto;
+    background-color: #030b17;
+    border: 1px solid #777;
+    z-index: 100;
+
+
+}
+.edit{
+    position:absolute;
+    width:40px;
+    height:40px;
+    top:5%;
+    right:-22px;
+    transform:translate(-50%,-50%);
+    margin:auto;
+    background-color: rgba(0, 0, 0, 0.2);
+    border:none;
+    border-left:1px solid #444;
+  border-bottom:1px solid #444;
+    padding:5px;
+    border-radius:10px
+
+
+}
+
+.delete:hover{
+    
+    background-color: #030b17;
+    border:1px solid transparent
+
+
+}
+</style>
 <body>
-    <div class="crud">
+    <div style="width: 70%;height:100px;display: flex;float: right;margin-right: 20px;margin-top: 100px;flex-wrap: wrap;">    
 
-        <!-- heading -->
-        <div class="head">
+        <div style="position: absolute;top:50px;left:62%;transform: translate(-50%,-50%);"><h1 style="color:#F7DC6F;">- All Products -</h1></div>
 
-            <p style="font-weight: bold;color:#e8e4a5;">- Crud Project -</p>
-            <h2>ADD NEW PRODUCT</h2>
-        </div>
-
-
-        <!-- inputs -->
-        <div class="inputs">
-            <input type="text" placeholder="Title ..." id="title" />
-
-            <div class="price">
-                <input type="number" placeholder="Price ..." id="price" onkeyup="getTotal()" />
-                <input type="number" placeholder="Texes ..." id="texes" onkeyup="getTotal()" />
-                <input type="number" placeholder="Ads ..." id="ads" onkeyup="getTotal()" />
-                <input type="number" placeholder="Discount ..." id="discount" onkeyup="getTotal()" />
-                <span id="total"> --- </span>
-            </div>
-
-            <input type="number" placeholder="Count ..." id="count" />
-            <input type="text" placeholder="Category ..." id="category" />
-            <button id="submit">Create</button>
-        </div>
+        <div class="card"> 
+            <hr style="width: 70px;margin:5px auto 30px auto;height:3px;background-color:rgba(89, 88, 88, 0.6);border:none ;">
+            <h2 style="color: #B3B6B7">Product <hr style="width: 20px;height:2px;margin:10px auto;background-color:#F7DC6F;border:none"></h2>
+            <h4>Oppo</h4> 
+            <br><h2 style="color: #B3B6B7"> Category  <hr style="width: 20px;height:2px;margin:10px auto;background-color:#F7DC6F;border:none"></h2>
+            <h4>Android</h4> 
+            <br><h2 style="color: #B3B6B7"> Price   <hr style="width: 20px;height:2px;margin:10px auto;background-color:#F7DC6F;border:none"></h2> 
+            <h4>5000 EGP</h4> 
+        <button class="edit"><li class="fas fa-edit" style="font-size:30px;color:#3498DB"></li> </button>   
+        <button class="delete"><li class="fas fa-trash" style="font-size:30px;color:#C1241D"></li> </button></div>
 
 
-        <!-- search -->
-        <div class="outputs">
-            <div class="search">
-                <input type="text" placeholder="Search ..." id="search" onkeyup="searchdata(this.value)" />
-                <div class="btnsearch">
 
-                    <button id="searchtitle" onclick="getsearch(this.id)">Search By Title</button>
-                    <button id="searchcategory" onclick="getsearch(this.id)">Search By Category</button>
+        <div class="card">
+            <hr style="width: 70px;margin:5px auto 30px auto;height:3px;background-color:rgba(89, 88, 88, 0.6);border:none ;">
+            <h2 style="color: #B3B6B7">Product <hr style="width: 20px;margin:10px auto;"></h2>
+            <h4>Apple</h4> 
+            <br><h2 style="color: #B3B6B7"> Category <hr style="width: 20px;margin:10px auto;"></h2>
+            <h4>Iphone</h4> 
+            <br><h2 style="color: #B3B6B7"> Price  <hr style="width: 20px;margin:10px auto;"></h2> 
+            <h4>70000 EGP</h4> 
+            <button class="edit"><li class="fas fa-edit" style="font-size:30px;color:#3498DB"></li> </button>   
+            <button class="delete"><li class="fas fa-trash" style="font-size:30px;color:#C1241D"></li> </button></div>
+       
 
-                </div>
+
+    
+    <div class="card">
+        <hr style="width: 70px;margin:5px auto 30px auto;height:3px;background-color:rgba(89, 88, 88, 0.6);border:none ;">
+        <h2 style="color: #B3B6B7">Product <hr style="width: 20px;margin:10px auto;"></h2>
+        <h4>Sony</h4> 
+        <br><h2 style="color: #B3B6B7"> Category <hr style="width: 20px;margin:10px auto;"></h2>
+        <h4>Android</h4> 
+        <br><h2 style="color: #B3B6B7"> Price  <hr style="width: 20px;margin:10px auto;"></h2> 
+        <h4>8000 EGP</h4> 
+        <button class="edit"><li class="fas fa-edit" style="font-size:30px;color:#3498DB"></li> </button>   
+        <button class="delete"><li class="fas fa-trash" style="font-size:30px;color:#C1241D"></li> </button></div>
+        
+    
+    
+    <div>
+</div>
 
 
-                <!-- outputs -->
+        <div>
+    </div>
+</div>
 
-                <table>
+    <div >
+<div class="dashboard">
 
-                    <tr>
-                        <th>Id</th>
-                        <th>Title</th>
-                        <th>Price</th>
-                        <th>Texes</th>
-                        <th>Ads</th>
-                        <th>Discount</th>
-                        <th>Total</th>
-                        <th>Category</th>
-                        <th>Update</th>
-                        <th>Delete</th>
-                    </tr>
-                    <tbody id="tbody">
-                        
-                        
+<div class="head" >
 
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <p style="font-weight: bold;color:#F7DC6F;">- Crud Project -</p>
+    <h2>ADD NEW PRODUCT</h2>
+</div>
+<div class="inputs">
+    <input type="text" placeholder="Product ..." id="title" />
+
+    <div class="price">
+        <input type="number" placeholder="Price ..." id="price" onkeyup="getTotal()" />
+        <input type="number" placeholder="Texes ..." id="texes" onkeyup="getTotal()" />
+        <input type="number" placeholder="Ads ..." id="ads" onkeyup="getTotal()" />
+        <input type="number" placeholder="Discount ..." id="discount" onkeyup="getTotal()" />
+        <p id="total"> --- </p>
     </div>
 
+    <input type="number" placeholder="Count ..." id="count" />
+    <input type="text" placeholder="Category ..." id="category" />
+    <button id="submit">Create</button>
+</div>
+</div>
+    </div>
 
+    <div>
+        <div style="background-color: rgb(240, 82, 82);width:100px;height:100px;border-radius:50%;position: fixed;z-index: 0;"></div>
+    </div>
+    
 
     <script>
         let title = document.getElementById("title");
@@ -106,7 +265,7 @@
 
                 total.innerHTML = result;
                 total.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
-                total.style.border = "0.5px solid #fff";
+                total.style.border = "0.5px solid #333";
                 total.style.color = "#fff";
 
 
@@ -115,7 +274,7 @@
             } else {
 
             total.innerHTML = "";
-            total.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+            total.style.backgroundColor = "rgb(143, 59, 59)";
              total.style.border = "0.5px solid #fff";
              total.style.color = "#fff";
 
@@ -376,7 +535,5 @@
 
         }
     </script>
-
 </body>
-
 </html>
