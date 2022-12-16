@@ -1,615 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+        <link rel="stylesheet" href="./style.css" />
 
     <title>CRUD PROJECT BY JAVASCRIPT</title>
 </head>
-<style>
-    *{
-        margin: 0%;
-        padding: 0%;
-        box-sizing: border-box;
-        
-    }
-    body{
-        background: linear-gradient(to right , #020b22 , #000);
-    color: #fff;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    }
-    .dashboard{
-        width: 25%;
-        height:auto;
-background: #ffffff1a;
-backdrop-filter: blur(20px);
-border: 1px solid #ffffff30;
-box-shadow: 0 0 30px #0000002a;
-margin:15px 10px;
-padding: 10px;
-position: fixed;
-top: 10px;
-z-index: 100;
-    }
-    .circle{
-        background-color: rgb(240, 82, 82);
-        width:100px;height:100px;
-        border-radius:50%;
-        position: fixed;
-        z-index: 0;
-    }
-    .head{
-        text-align: center;
-        margin: 20px auto;
-    }
-    input {
-    width: 100%;
-    height: 30px;
-    outline: none;
-    border: none;
-    background: #ffffff1a;
-    backdrop-filter: blur(20px);
-    border: 1px solid #ffffff30;
-    box-shadow: 0 0 30px #0000002a;
-    direction: rtl;
-
-    margin: 10px auto;
-    border-radius: 4px;
-    padding: 4px;
-    color: #fff;
-}
-input:focus {
-
-    background: #ffffff1a;
-    backdrop-filter: blur(20px);
-    border: 1px solid #ffffff30;
-    box-shadow: 0 0 30px #0000002a;
-}
-.price input {
-    width: 100%;
-}
-input::placeholder {
-    color: #fff;
-}
-#total {
-    background-color: rgb(143, 59, 59);
-    padding: 5px 5px;
-    border-radius: 4px;
-    color: #fff;
-    margin: 10px 0px;
-    width: 100%;
-    direction: rtl;
 
 
-}
-#total::before {
-    content: "الاجمالي  : ";
-}
-button {
-    width: 100%;
-    height: 30px;
-    border: none;
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 1px solid #666;
-    color: #fff;
-    border-radius: 20px;
-    transition: all 1s;
-    font-weight: bold;
-    margin-top:5px;
-    margin-bottom:5px;
-
-}
-button:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-}
-
-.content{
-    width: 70%;
-    height:100px;
-    display: flex;
-    float: right;margin-right: 20px;
-    margin-top: 135px;
-    flex-wrap: wrap;
-}
-.title{
-    position: absolute;
-    top:80px;
-    left:62%;
-    transform: translate(-50%,-50%);
-}
-.card{
-width: 30%;
-height:370px;
-background: #ffffff1a;
-backdrop-filter: blur(20px);
-border: 1px solid #ffffff30;
-box-shadow: 0 0 30px #0000002a;
-margin:10px 10px 40px 10px;
-position:relative;
-text-align:center;
-padding:20px;
-color:#eee;
-border-radius:5px;
-
-}
-
-.delete{
-    position:absolute;
-    width:50px;
-    height:50px;
-    top:100%;
-    border-radius:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    margin:auto;
-    background-color: #040112;
-    z-index: 100;
-
-
-}
-.edit{
-    position:absolute;
-    width:30px;
-    height:30px;
-    top:4%;
-    right:-14px;
-    transform:translate(-50%,-50%);
-    margin:auto;
-    background-color: rgba(0, 0, 0, 0.2);
-    border:none;
-    border-left:1px solid #444;
-  border-bottom:1px solid #444;
-    padding:5px;
-    border-radius:1px
-
-
-}
-
-.delete:hover{
-    
-    background-color: #040112;
-
-
-}
-
-@media screen and (max-width:850px) {
-
-
-    
-    .dashboard{
-        width: 95%;
-        height:auto;
-margin:auto ;
-position:absolute;
-top:320px;
-left:50%;
-transform: translate(-50%,-50%)
-
-}
-
-
-.circle{
-        background-color: rgb(240, 82, 82);
-        width:100px;
-        height:100px;
-        border-radius:50%;
-        position: absolute;
-        top:10px;
-        z-index: 0;
-    }
-
-
-    .title{
-    position: absolute;
-    top:650px;
-    left:50%;
-
-    transform: translate(-50%,-50%);
-}
-
-
-.content{
-    width: 100%;
-    height: auto;
-    display: flex;
-flex-direction:column;
-    flex-wrap: wrap;
-    justify-self: center;
-    margin:670px auto;
-}
-
-.card{
-    width: 80%;
-    margin:30px auto;
-    padding-bottom: 150px;
-
-}
-}
-</style>
 <body>
-    <div class="content">    
-
-        <div class="title"><h1 style="color:#ddd;">- جميع المنتجات -</h1></div>
-
-        <div class="card"> 
-            <hr style="width: 70px;margin:5px auto 30px auto;height:3px;background-color:rgba(154, 149, 149, 0.6);border-radius: 450px ;border:none">
-            <h2 style="color: #eee">اسم المنتج <hr style="width: 20px;height:2px;margin:10px auto;background-color:#f6ceb3;border:none"></h2>
-            <h4>Oppo</h4> 
-            <br><h2 style="color: #eee"> الفئة  <hr style="width: 20px;height:2px;margin:10px auto;background-color:#f6ceb3;border:none"></h2>
-            <h4>Android</h4> 
-            <br><h2 style="color: #eee"> السعر   <hr style="width: 20px;height:2px;margin:10px auto;background-color:#f6ceb3;border:none"></h2> 
-            <h4>5000 EGP</h4> 
-        <button class="edit"><li class="fas fa-edit" style="font-size:20px;color:#3498DB"></li> </button>   
-        <button class="delete"><li class="fas fa-trash" style="font-size:20px;color:#ca261d"></li> </button></div>
 
 
-
-        <div class="card">
-            <hr style="width: 70px;margin:5px auto 30px auto;height:3px;background-color:rgba(154, 149, 149, 0.6);border-radius: 450px ;border:none">
-            <h2 style="color: #eee">اسم المنتج  <hr style="width: 20px;height:2px;margin:10px auto;background-color:#f6ceb3;border:none"></h2>
-            <h4>Apple</h4> 
-            <br><h2 style="color: #eee"> الفئة  <hr style="width: 20px;height:2px;margin:10px auto;background-color:#f6ceb3;border:none"></h2>
-            <h4>Iphone</h4> 
-            <br><h2 style="color: #eee"> السعر   <hr style="width: 20px;height:2px;margin:10px auto;background-color:#f6ceb3;border:none"></h2> 
-            <h4>70000 EGP</h4> 
-            <button class="edit"><li class="fas fa-edit" style="font-size:20px;color:#3498DB"></li> </button>   
-            <button class="delete"><li class="fas fa-trash" style="font-size:20px;color:#ca261d"></li> </button></div>
-       
+    <div class="outputs">
+        <div class="search">
+            <input type="text" placeholder="ابحث ..." id="search" onkeyup="searchdata(this.value)" class="search-input"/>
+        </div>
+    </div>
 
 
-    
-    <div class="card">
-        <hr style="width: 70px;margin:5px auto 30px auto;height:3px;background-color:rgba(154, 149, 149, 0.6);border-radius: 450px ;border:none">
-        <h2 style="color: #eee">اسم المنتج <hr style="width: 20px;height:2px;margin:10px auto;background-color:#f6ceb3;border:none"></h2>
-        <h4>Sony</h4> 
-        <br><h2 style="color: #eee"> الفئة  <hr style="width: 20px;height:2px;margin:10px auto;background-color:#f6ceb3;border:none"></h2>
-        <h4>Android</h4> 
-        <br><h2 style="color: #eee"> السعر   <hr style="width: 20px;height:2px;margin:10px auto;background-color:#f6ceb3;border:none"></h2> 
-        <h4>8000 EGP</h4> 
-        <button class="edit"><li class="fas fa-edit" style="font-size:20px;color:#3498DB"></li> </button>   
-        <button class="delete"><li class="fas fa-trash" style="font-size:20px;color:#ca261d"></li> </button></div>
-        
-    
-    
-    <div>
-</div>
+    <div class="thetitle">
+        <h1 style="color:#fff;">- جميع المنتجات -</h1>
+    </div>
+
+
+    <div class="content" id="thebody">
 
 
         <div>
-    </div>
-</div>
+        </div>
 
-    <div >
-<div class="dashboard">
 
-<div class="head" >
-
-    <p style="font-weight: bold;color:#f6ceb3;font-size: 20px;">- Crud Project By Javascript -</p><br>
-    <h2>أضف منتج جديد</h2>
-</div>
-<div class="inputs">
-    <input type="text" placeholder="اسم المنتج ..." id="title" />
-
-    <div class="price">
-        <input type="number" placeholder="السعر ..." id="price" onkeyup="getTotal()" />
-        <input type="number" placeholder="الضرائب ..." id="texes" onkeyup="getTotal()" />
-        <input type="number" placeholder="الاعلانات ..." id="ads" onkeyup="getTotal()" />
-        <input type="number" placeholder="الخصم ..." id="discount" onkeyup="getTotal()" />
-        <p id="total"> --- </p>
+        <div>
+        </div>
     </div>
 
-    <input type="number" placeholder="عدد المنتجات ..." id="count" />
-    <input type="text" placeholder="الفئة ..." id="category" />
-    <button id="submit">اضافة</button>
-</div>
-</div>
+    <div>
+        <div class="dashboard">
+
+            <div class="head">
+
+                <p style="font-weight: bold;color:#fff;font-size: 20px;"> Crud Project By Javascript </p><br>
+                <h2 style="color:#ffa400"> - أضف منتج جديد -</h2>
+            </div>
+            <div class="inputs">
+                <input type="text" placeholder="اسم المنتج ..." id="title" />
+
+                <div class="price">
+                    <input type="number" placeholder="السعر ..." id="price" onkeyup="getTotal()" />
+                    <input type="number" placeholder="الضرائب ..." id="texes" onkeyup="getTotal()" />
+                    <input type="number" placeholder="الاعلانات ..." id="ads" onkeyup="getTotal()" />
+                    <input type="number" placeholder="الخصم ..." id="discount" onkeyup="getTotal()" />
+                    <p id="total"> --- </p>
+                </div>
+
+                <input type="number" placeholder="عدد المنتجات ..." id="count" />
+                <input type="text" placeholder="الفئة ..." id="category" />
+                <button id="submit">إضافة</button>
+            </div>
+        </div>
     </div>
 
     <div>
         <div class="circle"></div>
     </div>
-    
 
-    <script>
-        let title = document.getElementById("title");
-        let price = document.getElementById("price");
-        let texes = document.getElementById("texes");
-        let ads = document.getElementById("ads");
-        let discount = document.getElementById("discount");
-        let total = document.getElementById("total");
-        let count = document.getElementById("count");
-        let category = document.getElementById("category");
-        let submit = document.getElementById("submit");
+<script src="logic.js">
 
-        let mood = "create";
-        let temp;
+</script>
 
 
-
-        function getTotal() {
-
-            if (price.value != "") {
-
-
-                // + لتحويل الاسترينج لرقم 
-
-                let result = (+price.value + +texes.value + +ads.value) - discount.value;
-
-                total.innerHTML = result;
-                total.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
-                total.style.border = "0.5px solid #333";
-                total.style.color = "#fff";
-
-
-
-
-            } else {
-
-            total.innerHTML = "";
-            total.style.backgroundColor = "rgb(143, 59, 59)";
-             total.style.border = "0.5px solid #fff";
-             total.style.color = "#fff";
-
-
-            }
-
-        }
-
-
-
-
-        // save data
-
-
-        let dataproduct = [];
-
-
-
-        if (localStorage.product != null) {
-            dataproduct = JSON.parse(localStorage.product)
-        } else {
-
-            let dataproduct = [];
-
-        }
-
-        submit.onclick = function () {
-
-
-
-            let newproduct = {
-
-                title: title.value.toLowerCase(),
-                price: price.value,
-                texes: texes.value,
-                ads: ads.value,
-                discount: discount.value,
-                total: total.innerHTML,
-                count: count.value,
-                category: category.value.toLowerCase()
-            }
-
-            if (title.value !== "" && price.value !== "" && texes.value !== "" && ads.value !== "" && discount
-                .value !== "" && category.value !== "" && newproduct.count < 100) {
-
-                if (mood === "create") {
-
-
-
-                    if (newproduct.count > 1) {
-
-                        for (i = 1; i <= newproduct.count; i++)
-                            dataproduct.push(newproduct);
-
-
-                    } else {
-                        dataproduct.push(newproduct);
-                        clearData();
-
-
-
-                    }
-
-
-                }
-                clearData();
-
-
-
-
-
-            } else {
-
-                dataproduct[temp] = newproduct;
-                mood = "create";
-                submit.innerHTML = 'Create';
-                count.style.display = "block";
-
-
-            }
-
-            // لحفظ البيانات في local storage
-            localStorage.setItem('product', JSON.stringify(dataproduct));
-
-
-            showdata();
-
-
-        }
-
-
-        // clear data
-
-        function clearData() {
-
-
-            title.value = "";
-            price.value = "";
-            texes.value = "";
-            ads.value = "";
-            discount.value = "";
-            count.value = "";
-            category.value = "";
-            total.innerHTML = "";
-
-
-        }
-
-
-        // show data
-
-        function showdata() {
-
-            let table = '';
-
-            for (let i = 1; i < dataproduct.length; i++) {
-
-                table += `<tr> <td>${i}</td>
-                            <td>${dataproduct[i].title}</td>
-                            <td>${dataproduct[i].price}</td>
-                            <td>${dataproduct[i].texes}</td>
-                            <td>${dataproduct[i].ads}</td>
-                            <td>${dataproduct[i].discount}</td>
-                            <td>${dataproduct[i].total}</td>
-                            <td>${dataproduct[i].category}</td>
-                            <td><button id="update" onclick="updatedata(${i})">Update</button></td>
-                                        <td><button id="delete" onclick="deletedata(${i})">Delete</button></td>
-                                        
-
-                            </tr>`
-            }
-
-            document.getElementById("tbody").innerHTML = table;
-
-
-        }
-
-        showdata();
-
-
-
-
-        // delete data
-
-        function deletedata(i) {
-
-            if (confirm("Are You Sure?")) {
-
-                dataproduct.splice(i, 1);
-                localStorage.product = JSON.stringify(dataproduct);
-                showdata();
-
-            }
-
-
-        }
-
-
-
-
-        // update data
-
-        function updatedata(i) {
-
-            title.value = dataproduct[i].title;
-            price.value = dataproduct[i].price;
-            texes.value = dataproduct[i].texes;
-            ads.value = dataproduct[i].ads;
-            discount.value = dataproduct[i].discount;
-            category.value = dataproduct[i].category;
-            getTotal();
-            count.style.display = "none";
-            submit.innerHTML = "Update";
-            mood = "update";
-            temp = i;
-            scroll({
-                top: 0,
-                behavior: "smooth"
-            })
-
-        }
-
-
-        // search
-
-        let searchmood = "title";
-
-        function getsearch(id) {
-
-            let searchbut = document.getElementById("search");
-
-            if (id == "searchtitle") {
-
-                searchmood = "title";
-                searchbut.placeholder = "Search By Title"
-            } else {
-
-                searchmood = "category";
-                searchbut.placeholder = "Search By Category"
-
-            }
-
-            searchbut.focus();
-            searchbut.value = "";
-            showdata()
-
-        }
-
-
-        function searchdata(value) {
-
-            let table = '';
-
-
-            if (searchmood == "title") {
-
-                for (let i = 1; i < dataproduct.length; i++) {
-
-                    if (dataproduct[i].title.toLowerCase().includes(value.toLowerCase())) {
-
-                        table += `<tr> <td>${i}</td>
-                            <td>${dataproduct[i].title}</td>
-                            <td>${dataproduct[i].price}</td>
-                            <td>${dataproduct[i].texes}</td>
-                            <td>${dataproduct[i].ads}</td>
-                            <td>${dataproduct[i].discount}</td>
-                            <td>${dataproduct[i].total}</td>
-                            <td>${dataproduct[i].category}</td>
-                            <td><button id="update" onclick="updatedata(${i})">Update</button></td>
-                                <td><button id="delete" onclick="deletedata(${i})">Delete</button></td>
-                                    
-                            </tr>`
-                    }
-
-                }
-            } else if (searchmood == "category") {
-                for (let i = 1; i < dataproduct.length; i++) {
-
-                    if (dataproduct[i].category.includes(value.toLowerCase())) {
-
-                        table += `<tr> <td>${i}</td>
-                            <td>${dataproduct[i].title}</td>
-                            <td>${dataproduct[i].price}</td>
-                            <td>${dataproduct[i].texes}</td>
-                            <td>${dataproduct[i].ads}</td>
-                            <td>${dataproduct[i].discount}</td>
-                            <td>${dataproduct[i].total}</td>
-                            <td>${dataproduct[i].category}</td>
-                            <td><button id="update" onclick="updatedata(${i})">Update</button></td>
-                            <td><button id="delete" onclick="deletedata(${i})">Delete</button></td>                    
-            </tr>`
-
-                    }
-                }
-            }0
-            document.getElementById("tbody").innerHTML = table;
-
-
-        }
-    </script>
 </body>
+
 </html>
