@@ -52,7 +52,7 @@
 
 
     if (localStorage.product != null) {
-        dataproduct = JSON.parse(localStorage.product)
+        dataproduct = JSON.parse(localStorage.data)
     } else {
 
         let dataproduct = [];
@@ -86,8 +86,7 @@
 
                     for (i = 1; i <= newproduct.count; i++)
                         dataproduct.push(newproduct);
-                        clearData();
-
+                    clearData();
 
 
                 } else {
@@ -96,10 +95,7 @@
 
 
 
-                }
-
-
-            }else {
+                }}else {
 
                 dataproduct[temp] = newproduct;
                 mood = 'create' ; 
@@ -115,7 +111,7 @@
         }
 
         // لحفظ البيانات في local storage
-        localStorage.setItem('product', JSON.stringify(dataproduct));
+        localStorage.setItem('data', JSON.stringify(dataproduct));
 
 
         showdata();
@@ -151,7 +147,7 @@
 
         let table = '';
 
-        for (let i = 1; i < dataproduct.length; i++) {
+        for (let i = 0; i < dataproduct.length; i++) {
 
             table +=
                 ` <div class="card"> 
@@ -187,7 +183,7 @@
         if (confirm("Are You Sure?")) {
 
             dataproduct.splice(i, 1);
-            localStorage.product = JSON.stringify(dataproduct);
+            localStorage.data = JSON.stringify(dataproduct);
             showdata();
 
         }
@@ -244,7 +240,7 @@
 
         if (searchmood == "title") {
 
-            for (let i = 1; i < dataproduct.length; i++) {
+            for (let i = 0; i < dataproduct.length; i++) {
 
                 if (dataproduct[i].title.toLowerCase().includes(value.toLowerCase())) {
 
