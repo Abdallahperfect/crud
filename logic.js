@@ -52,7 +52,7 @@
 
 
     if (localStorage.product != null) {
-        dataproduct = JSON.parse(localStorage.data)
+        dataproduct = JSON.parse(localStorage.product)
     } else {
 
         let dataproduct = [];
@@ -111,7 +111,7 @@
         }
 
         // لحفظ البيانات في local storage
-        localStorage.setItem('data', JSON.stringify(dataproduct));
+        localStorage.setItem('product', JSON.stringify(dataproduct));
 
 
         showdata();
