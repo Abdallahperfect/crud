@@ -226,7 +226,7 @@ button:hover {
         left: 50%;
         transform: translate(-50%, -50%);
         text-align: center;
-        font-size: 7px;
+        font-size: 13px;
     }
 
 
@@ -247,8 +247,17 @@ button:hover {
 
 
     }
+        
+.delete {
+    position: absolute;
+    top: 110%;
+
+
+}
 
     .search{
         top: 680px;
     }
+
+
 }
