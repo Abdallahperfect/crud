@@ -84,7 +84,7 @@
 
                 if (newproduct.count > 1) {
 
-                    for (i = 1; i <= newproduct.count; i++)
+                    for (i = 0; i < newproduct.count; i++)
                         dataproduct.push(newproduct);
                     clearData();
 
@@ -183,7 +183,7 @@
         if (confirm("Are You Sure?")) {
 
             dataproduct.splice(i, 1);
-            localStorage.data = JSON.stringify(dataproduct);
+            localStorage.product = JSON.stringify(dataproduct);
             showdata();
 
         }
