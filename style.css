@@ -6,7 +6,7 @@
 }
 
 body {
-    background: linear-gradient(to right, #1c0534,  rgb(4, 3, 5));
+    background: linear-gradient(to right, #080534,  rgb(4, 3, 5));
     color: #fff;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -151,7 +151,7 @@ button:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     margin: auto;
-    background-color: rgb(19, 4, 38);
+    background-color: #030218;
     z-index: 100;
 
 
@@ -165,7 +165,7 @@ button:hover {
     right: -14px;
     transform: translate(-50%, -50%);
     margin: auto;
-    background-color: #270552;
+    background-color: #030218;
     border: none;
     border-left: 1px solid #444;
     border-bottom: 1px solid #444;
@@ -175,7 +175,7 @@ button:hover {
 
 .delete:hover {
 
-    background-color: rgb(19, 4, 38);
+    background-color: #030218;
 
 }
 
