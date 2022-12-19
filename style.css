@@ -6,7 +6,7 @@
 }
 
 body {
-    background: linear-gradient(to right, #080534,  rgb(4, 3, 5));
+    background: linear-gradient(to right, #0a0730,  rgb(4, 3, 5));
     color: #fff;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
@@ -157,6 +157,22 @@ button:hover {
 
 }
 
+.split{
+    width: 70px;
+    margin:5px auto 30px auto;
+    height:3px;
+    background-color:rgba(154, 149, 149, 0.6);
+    border-radius: 450px ;
+    border:none
+}
+
+.split2{
+    width: 20px;
+    height:2px;
+    margin:10px auto;
+    background-color:#ffa400;border:none
+}
+
 .edit {
     position: absolute;
     width: 30px;
@@ -193,6 +209,7 @@ button:hover {
     padding-right:10px;
     font-size:15px
 }
+
 
 @media screen and (max-width:850px) {
 
@@ -243,21 +260,26 @@ button:hover {
     .card {
         width: 80%;
         margin: 30px auto;
-        padding-bottom: 170px;
 
 
     }
-        
-.delete {
-    position: absolute;
-    top: 104%;
+    .split{
+        width: 70px;
+        margin:5px auto 15px auto;
+        height:3px;
+        background-color:rgba(154, 149, 149, 0.6);
+        border-radius: 450px ;
+        border:none
+    }
+    
 
-
-}
+ 
 
     .search{
         top: 680px;
     }
+
+    
 
 
 }

@@ -151,12 +151,12 @@
 
             table +=
                 ` <div class="card"> 
-    <hr style="width: 70px;margin:5px auto 30px auto;height:3px;background-color:rgba(154, 149, 149, 0.6);border-radius: 450px ;border:none">
-    <h2 style="color: #eee">اسم المنتج <hr style="width: 20px;height:2px;margin:10px auto;background-color:#ffa400;border:none"></h2>
+    <hr class="split">
+    <h2 style="color: #eee">اسم المنتج <hr class="split2"></h2>
     <h4>${dataproduct[i].title}</h4> 
-    <br><h2 style="color: #eee"> الفئة  <hr style="width: 20px;height:2px;margin:10px auto;background-color:#ffa400;border:none"></h2>
+    <br><h2 style="color: #eee"> الفئة  <hr class="split2"></h2>
     <h4>${dataproduct[i].category}</h4> 
-    <br><h2 style="color: #eee"> السعر   <hr style="width: 20px;height:2px;margin:10px auto;background-color:#ffa400;border:none"></h2> 
+    <br><h2 style="color: #eee"> السعر   <hr class="split2"></h2> 
     <h4>${dataproduct[i].total}</h4> 
 <button class="edit"><li class="fas fa-edit" style="font-size:20px;color:rgb(26,90,193)" onclick="updatedata(${i})"></li> </button>   
 <button class="delete"><li class="fas fa-trash" style="font-size:20px;color:#ca261d" onclick="deletedata(${i})"></li> </button></div>`
@@ -164,7 +164,7 @@
 
         document.getElementById("thebody").innerHTML = table;
         if(dataproduct.length < 1){
-        document.getElementById("thebody").innerHTML += "<div style='margin:auto'><h1 style='color:rgb(169, 12, 12);margin-top:80px;font-size:50px;text-align:center'>لا توجد منتجات لعرضها</h1></div>";
+        document.getElementById("thebody").innerHTML += "<div style='margin:auto'><img src='./no-product.webp' style='margin:auto;width:340px;height:340px'/></div>"
     }
 
 
@@ -246,12 +246,12 @@
 
                     table +=
                         `<div class="card"> 
-    <hr style="width: 70px;margin:5px auto 30px auto;height:3px;background-color:rgba(154, 149, 149, 0.6);border-radius: 450px ;border:none">
-    <h2 style="color: #eee">اسم المنتج <hr style="width: 20px;height:2px;margin:10px auto;background-color:#ffa400;border:none"></h2>
+    <hr class="split">
+    <h2 style="color: #eee">اسم المنتج <hr class="split2"></h2>
     <h4>${dataproduct[i].title}</h4> 
-    <br><h2 style="color: #eee"> الفئة  <hr style="width: 20px;height:2px;margin:10px auto;background-color:#ffa400;border:none"></h2>
+    <br><h2 style="color: #eee"> الفئة  <hr class="split2"></h2>
     <h4>${dataproduct[i].category}</h4> 
-    <br><h2 style="color: #eee"> السعر   <hr style="width: 20px;height:2px;margin:10px auto;background-color:#ffa400;border:none"></h2> 
+    <br><h2 style="color: #eee"> السعر   <hr class="split2"></h2> 
     <h4>${dataproduct[i].total}</h4> 
 <button class="edit"><li class="fas fa-edit" style="font-size:20px;color:rgb(26,90,193)" onclick="updatedata(${i})"></li> </button>   
 <button class="delete"><li class="fas fa-trash" style="font-size:20px;color:#ca261d" onclick="deletedata(${i})"></li> </button></div>`
